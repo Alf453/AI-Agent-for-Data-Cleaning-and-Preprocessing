@@ -2,7 +2,7 @@ import sys
 import os
 import pandas as pd
 import io
-import aiohttp
+
 from fastapi import FastAPI, UploadFile, File, Query, HTTPException
 from sqlalchemy import create_engine
 from pydantic import BaseModel
