@@ -15,7 +15,7 @@ from typing_extensions import Annotated, Doc
 
 class HTTPBasicCredentials(BaseModel):
     """
-    The HTTP Basic credentials given as the result of using `HTTPBasic` in a
+    The HTTP Basic credendials given as the result of using `HTTPBasic` in a
     dependency.
 
     Read more about it in the
@@ -277,7 +277,7 @@ class HTTPBearer(HTTPBase):
             bool,
             Doc(
                 """
-                By default, if the HTTP Bearer token is not provided (in an
+                By default, if the HTTP Bearer token not provided (in an
                 `Authorization` header), `HTTPBearer` will automatically cancel the
                 request and send the client an error.
 
@@ -380,7 +380,7 @@ class HTTPDigest(HTTPBase):
             bool,
             Doc(
                 """
-                By default, if the HTTP Digest is not provided, `HTTPDigest` will
+                By default, if the HTTP Digest not provided, `HTTPDigest` will
                 automatically cancel the request and send the client an error.
 
                 If `auto_error` is set to `False`, when the HTTP Digest is not
@@ -413,11 +413,8 @@ class HTTPDigest(HTTPBase):
             else:
                 return None
         if scheme.lower() != "digest":
-            if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
-                    detail="Invalid authentication credentials",
-                )
-            else:
-                return None
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN,
+                detail="Invalid authentication credentials",
+            )
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)

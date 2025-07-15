@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: ai-cleaning-backend
-    runtime: python
-    pythonVersion: 3.11.9
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn scripts.backend:app
